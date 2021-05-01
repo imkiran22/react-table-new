@@ -1,0 +1,35 @@
+.table-flex-container {
+  display: flex;
+  flex-flow: column nowrap;
+  background: rgb(229, 251, 152);
+  .header {
+    display: inline-flex;
+    background: orange;
+    justify-content: space-between;
+    padding: 10px 5px;
+    flex-basis: 100%;
+    .column {
+       color: #363636;
+       font-size: 14px;
+       font-weight: 600;
+       text-align: left;
+    }
+  }
+  .content {
+      display: inline-flex;
+      background: lightgreen;
+      justify-content: space-between;
+      flex-flow: column wrap;
+      padding: 10px 5px;
+      flex-basis: 100%;
+      .row {
+         display: inline-flex;
+         flex-flow: row nowrap;
+         text-align: left;
+         button {
+           color: whitesmoke;
+           margin: 0px 2px;
+         }
+      }
+  }
+}

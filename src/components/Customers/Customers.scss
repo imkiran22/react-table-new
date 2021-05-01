@@ -1,0 +1,26 @@
+.customers {
+  display: flex;
+  flex-flow: column wrap;
+  background: aliceblue;
+  .search {
+    display: inline-flex;
+    flex-direction: column;
+    background: red;
+    input {
+        outline: none;
+        border: 2px solid #674ebf;
+        height: 25px;
+        padding: 5px;
+    }
+  }
+  .adduser {
+    padding: 10px 0px;
+    display: inline-flex;
+    justify-content: flex-end;
+    button {
+      color: whitesmoke;
+      font-size: 13px;
+      flex-basis: 100px;
+    }
+  }
+}
