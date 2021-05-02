@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from ".";
-// import { history } from "../history";
 import {
   fetchCustomers,
   deleteCustomers
@@ -16,13 +15,11 @@ export const useCustomer = () => {
   };
 
   const onEdit = (val: string) => {
-    history.push(`/edituser/${val}`);
-    window.location.reload();
+     history.push(`/edituser/${val}`);
   };
 
   const onAdd = () => {
-    history.push(`/adduser`);
-    window.location.reload();
+     history.push(`/adduser`);
   };
 
   React.useEffect(() => {

@@ -5,7 +5,6 @@
   .search {
     display: inline-flex;
     flex-direction: column;
-    background: red;
     input {
         outline: none;
         border: 2px solid #674ebf;
@@ -21,6 +20,27 @@
       color: whitesmoke;
       font-size: 13px;
       flex-basis: 100px;
+    }
+  }
+}
+
+.user-form {
+  display: flex;
+  flex-flow: column wrap;
+  form {
+    display: inline-flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    .form-input {
+      display: inline-flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      button {
+        color: whitesmoke;
+        font-size: 13px;
+      }
     }
   }
 }
