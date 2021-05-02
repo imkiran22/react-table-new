@@ -11,15 +11,17 @@ export const useCustomer = () => {
   const customers = useAppSelector((state) => state.customers);
 
   const onDelete = (val: string) => {
-    dispatch(deleteCustomers(val));
+    if (window.confirm("Are you sure you want to delete the user?")) {
+      dispatch(deleteCustomers(val));
+    }
   };
 
   const onEdit = (val: string) => {
-     history.push(`/edituser/${val}`);
+    history.push(`/edituser/${val}`);
   };
 
   const onAdd = () => {
-     history.push(`/adduser`);
+    history.push(`/adduser`);
   };
 
   React.useEffect(() => {

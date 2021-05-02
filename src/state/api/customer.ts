@@ -18,7 +18,8 @@ export const updateCustomerAPI = async function (payload: {
   const url = `https://reqres.in/api/users/${payload.id}`;
   const obj = {
     name: payload.firstName,
-    job: payload.email
+    job: payload.email,
+    id: payload.id
   };
   return await axios.patch(url, obj);
 };

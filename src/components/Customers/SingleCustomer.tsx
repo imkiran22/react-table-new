@@ -1,6 +1,7 @@
+import { findIndex } from "lodash";
 import React, { useReducer } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   addCustomers,
   updateCustomers
@@ -44,6 +45,7 @@ export const SingleCustomer: React.FC<{}> = () => {
   });
   const appDispatch = useAppDispatch();
   const history = useHistory();
+  const customers = useAppSelector((state) => state.customers.data);
   const redirect = () => {
     alert(id ? "UPDATED CUSTOMER" : "ADDED CUSTOMER");
     history.push("/customers");
@@ -51,11 +53,32 @@ export const SingleCustomer: React.FC<{}> = () => {
   const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (id) {
-      appDispatch(updateCustomers({ ...state, id })).then(redirect);
+      const data = { ...state, id };
+      console.log(data);
+      appDispatch(updateCustomers(data)).then(redirect);
     } else {
       appDispatch(addCustomers({ ...state })).then(redirect);
     }
   };
+
+  React.useEffect(() => {
+    const index = findIndex(customers, { id: parseInt(id, 10) });
+    if (index > -1) {
+      let { first_name, last_name, email } = customers[index];
+      dispatch({
+        type: "SET_FIRSTNAME",
+        value: first_name
+      });
+      dispatch({
+        type: "SET_LASTNAME",
+        value: last_name
+      });
+      dispatch({
+        type: "SET_EMAIL",
+        value: email
+      });
+    }
+  }, [customers]);
   return (
     <div className="user-form">
       <form noValidate onSubmit={onSubmit}>
@@ -95,7 +118,7 @@ export const SingleCustomer: React.FC<{}> = () => {
         </div>
         <div className="form-input">
           <button className="button" type="submit">
-            {!id ? "ADD USER" : "UPDATE USER"}
+            {!id ? "ADD" : "UPDATE"}
           </button>
         </div>
       </form>

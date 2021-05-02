@@ -1,13 +1,13 @@
 .table-flex-container {
   display: flex;
   flex-flow: column nowrap;
-  background: rgb(229, 251, 152);
+  border: 1px solid #363636;
   .header {
     display: inline-flex;
-    background: orange;
     justify-content: space-between;
     padding: 10px 5px;
     flex-basis: 100%;
+    border-bottom: 1px solid #363636;
     .column {
        color: #363636;
        font-size: 14px;
@@ -17,15 +17,17 @@
   }
   .content {
       display: inline-flex;
-      background: lightgreen;
       justify-content: space-between;
       flex-flow: column wrap;
-      padding: 10px 5px;
+      // padding: 10px 5px;
       flex-basis: 100%;
       .row {
          display: inline-flex;
          flex-flow: row nowrap;
          text-align: left;
+         border-bottom: 1px solid #363636;
+         padding: 7px 7px;
+         align-items: center;
          button {
            color: whitesmoke;
            margin: 0px 2px;

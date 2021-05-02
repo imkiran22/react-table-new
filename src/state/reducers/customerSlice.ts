@@ -62,14 +62,23 @@ export const customerSlice = createSlice({
     });
 
     builder.addCase(updateCustomers.fulfilled, (state, { payload }) => {
-      console.log("UPDATE SUCCESS");
+      const index = findIndex(state.data, { id: payload.id.toString() });
+      if (index > -1) {
+        state.data[index].first_name = payload.name;
+        state.data[index].last_name = payload.job;
+      }
     });
     builder.addCase(updateCustomers.rejected, (state, { payload }) => {
       console.error("CUSTOMERS UPDATE FAILURE", state, payload);
     });
 
     builder.addCase(addCustomers.fulfilled, (state, { payload }) => {
-      console.log("ADD SUCCESS");
+      const data = payload as any;
+      state.data.unshift({
+        id: data.id,
+        first_name: data.name,
+        last_name: data.job
+      } as any);
     });
     builder.addCase(addCustomers.rejected, (state, { payload }) => {
       console.error("CUSTOMERS ADD FAILURE", state, payload);
