@@ -28,6 +28,7 @@ export const useCustomer = () => {
     const { total_pages, page } = customers.pagination;
     if (page < total_pages) {
       dispatch(fetchCustomers({ per_page: page + 1 }));
+      console.log("CALLED");
     }
   }, [customers.pagination]);
 

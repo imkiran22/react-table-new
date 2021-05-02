@@ -5,7 +5,8 @@ import { rootReducer } from "./state/reducers";
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(logger).concat(thunk)
+    getDefaultMiddleware() /*.concat(logger)*/
+      .concat(thunk)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
