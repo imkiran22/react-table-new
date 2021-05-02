@@ -1,5 +1,10 @@
 import React, { useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useAppDispatch } from "../../hooks";
+import {
+  addCustomers,
+  updateCustomers
+} from "../../state/thunks/customer-thunk";
 
 interface FormState {
   firstName: string;
@@ -37,13 +42,24 @@ export const SingleCustomer: React.FC<{}> = () => {
     lastName: "",
     email: ""
   });
+  const appDispatch = useAppDispatch();
+  const history = useHistory();
+  const redirect = () => {
+    alert(id ? "UPDATED CUSTOMER" : "ADDED CUSTOMER");
+    history.push("/customers");
+  };
   const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    console.log("ONSUBMIT", state);
+    if (id) {
+      appDispatch(updateCustomers({ ...state, id })).then(redirect);
+    } else {
+      appDispatch(addCustomers({ ...state })).then(redirect);
+    }
   };
   return (
     <div className="user-form">
       <form noValidate onSubmit={onSubmit}>
+        <h1>{id ? "EDIT USER" : "ADD USER"}</h1>
         <div className="form-input">
           <label>First Name</label>
           <input

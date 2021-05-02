@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { findIndex, omit } from "lodash";
-import { deleteCustomers, fetchCustomers } from "../thunks/customer-thunk";
+import {
+  deleteCustomers,
+  fetchCustomers,
+  updateCustomers,
+  addCustomers
+} from "../thunks/customer-thunk";
 
 interface Customer {
   id: number;
@@ -54,6 +59,20 @@ export const customerSlice = createSlice({
     });
     builder.addCase(deleteCustomers.rejected, (state, { payload }) => {
       console.error("CUSTOMERS LIST DELETE FAILURE", state, payload);
+    });
+
+    builder.addCase(updateCustomers.fulfilled, (state, { payload }) => {
+      console.log("UPDATE SUCCESS");
+    });
+    builder.addCase(updateCustomers.rejected, (state, { payload }) => {
+      console.error("CUSTOMERS UPDATE FAILURE", state, payload);
+    });
+
+    builder.addCase(addCustomers.fulfilled, (state, { payload }) => {
+      console.log("ADD SUCCESS");
+    });
+    builder.addCase(addCustomers.rejected, (state, { payload }) => {
+      console.error("CUSTOMERS ADD FAILURE", state, payload);
     });
   }
 });
